@@ -1,17 +1,31 @@
+const processText = (text, userOptions) =>{
 
-const processText = (text, { uppercase = false, reverse = false, removeSpecialChars = false } = {}) =>{
+    var specialChars = ['ą','ę','ń','ś','ć','ż','ź','ó','ł',"Ą", "Ę", "Ń", "Ś", "Ć", "Ż", "Ź", "Ó", "Ł"]
 
-    
-    
-   
-   } 
-   
+    if (userOptions.uppercase) {
+        text = text.toUpperCase();
+    }
 
-var opcje = {
-    uppercase: true,
-    reverse: true,
+
+    if (userOptions.reverse) {
+        text = [...text].reverse();
+        text = text.join('');
+    }
+
+
+    if (userOptions.removeSpecialChars) {
+        text = [...text].filter(letter => !specialChars.includes(letter))
+        text = text.join('');
+    }
+
+    return console.log(`Twój tekst po przejściach to: ${text}`)
+} 
+
+var userOptions = {
+    uppercase: false,
+    reverse: false,
     removeSpecialChars: true
 };
 
 
-processText("skibidi", opcje)
+processText("LubięWarzywa!!", userOptions)
